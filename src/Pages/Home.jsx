@@ -5,6 +5,7 @@ import { requestAllBooks } from '../API';
 
 const Home = () => {
   const [books, setBooks] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     loadBooks()
