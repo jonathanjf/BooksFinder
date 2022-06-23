@@ -52,7 +52,7 @@ const Home = () => {
   <>
     <SearchBar setInputValue={setInputValue} inputValue={inputValue} filterByText={filterByText}/>
     <div>
-      {filteredBooks.length > 1 ? <p>Foram encontrados {filteredBooks.length} resultados.</p> : <p>Sem filtros aplicados</p>}
+      {inputValue !== '' ? <p>Foram encontrados {filteredBooks.length} resultados.</p> : <p>Sem filtros aplicados</p>}
     </div>
     <Table books={books} />
     <PaginationComponent allBooks={allBooks} filteredBooks={filteredBooks} pageNumber={pageNumber} changePageNumber={changePageNumber}/>
