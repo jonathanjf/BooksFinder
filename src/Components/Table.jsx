@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Table = () => {
+const Table = ({books}) => {
   return (
     <table>
       <thead>
@@ -13,6 +13,15 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
+        
+        { !books ? <tr><td>loading...</td></tr> : books.map((book) => {
+          return <tr>
+            <td>{book.title}</td>
+            <td>{book.author}</td>
+            <td>{book.language}</td>
+            <td>{book.year}</td>
+          </tr>
+        })}
         
       </tbody>
     </table>
