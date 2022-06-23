@@ -2,9 +2,10 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
+
 const BooksTable = ({books}) => {
   return (
-    <Table  striped bordered hover>
+    <Table  striped bordered hover responsive='true'>
       <thead>
         <tr>
           <th>Livro</th>
@@ -22,7 +23,7 @@ const BooksTable = ({books}) => {
             <td>{book.author}</td>
             <td>{book.language}</td>
             <td>{book.year}</td>
-            <td><Button variant="secondary">Detalhes</Button>{' '}</td>
+            <td><Button variant="secondary">Detalhes</Button></td>
           </tr>
         })}
         
