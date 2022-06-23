@@ -6,8 +6,10 @@ import PaginationComponent from '../Components/Pagination';
 
 const Home = () => {
   const [allBooks, setAllBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
   const [books, setBooks] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [inputValue, setInputValue ] = useState('');
   
   useEffect(() => {
     loadAllBooks()
@@ -15,7 +17,7 @@ const Home = () => {
 
   useEffect(() => {
     updatePageElements()
-  }, [pageNumber, allBooks])
+  }, [pageNumber, allBooks, filteredBooks])
 
   const loadAllBooks = async () => {
     const response = await requestAllBooks()
@@ -26,19 +28,34 @@ const Home = () => {
       const page = pageNumber - 1;
       const start = page * 10;
       const end = start + 10;
-      setBooks(allBooks.slice(start,end))
-      console.log('update', allBooks.slice(start,end))
+      if (filteredBooks.length > 2) {
+        setBooks(filteredBooks.slice(start,end))
+      } else {
+        setBooks(allBooks.slice(start,end))
+      }
   }
 
   const changePageNumber = (pageN) => {
     setPageNumber(pageN)
   }
 
+  const filterByText = () => {
+    const filteredArray = allBooks
+    .filter((book) => book.title
+    .includes(inputValue) || book.author
+    .includes(inputValue) || book.language
+    .includes(inputValue) )
+    setFilteredBooks(filteredArray)
+  }
+
   return (
   <>
-    <SearchBar />
-    <Table books={books}/>
-    <PaginationComponent allBooks={allBooks} pageNumber={pageNumber} changePageNumber={changePageNumber}/>
+    <SearchBar setInputValue={setInputValue} inputValue={inputValue} filterByText={filterByText}/>
+    <div>
+      {filteredBooks.length > 1 ? <p>Foram encontrados {filteredBooks.length} resultados.</p> : <p>Sem filtros aplicados</p>}
+    </div>
+    <Table books={books} />
+    <PaginationComponent allBooks={allBooks} filteredBooks={filteredBooks} pageNumber={pageNumber} changePageNumber={changePageNumber}/>
   </>
   );
 }

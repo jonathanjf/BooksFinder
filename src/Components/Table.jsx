@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 
-const BooksTable = ({books}) => {
+const BooksTable = ({books, filteredBooks}) => {
   return (
     <Table  striped bordered hover responsive='true'>
       <thead>

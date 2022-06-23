@@ -1,12 +1,19 @@
 import Pagination from 'react-bootstrap/Pagination';
 
 
-const PaginationComponent = ({allBooks, pageNumber, changePageNumber}) => {
+const PaginationComponent = ({allBooks, pageNumber, changePageNumber, filteredBooks}) => {
 
   let active = pageNumber;
   let items = [];
-
-  const totalPages = allBooks ? Math.ceil(allBooks.length / 10) : 5
+  let totalPages 
+  if (allBooks && filteredBooks.length < 2) {
+    totalPages = Math.ceil(allBooks.length / 10)
+  } else if (filteredBooks.length > 1) {
+    totalPages = Math.ceil(filteredBooks.length / 10)
+  } else {
+    totalPages = 1
+  }
+   
 
   const changePage = (number) => {
     active = number
