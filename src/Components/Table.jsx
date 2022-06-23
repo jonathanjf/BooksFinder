@@ -1,8 +1,10 @@
 import React from 'react';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
-const Table = ({books}) => {
+const BooksTable = ({books}) => {
   return (
-    <table>
+    <Table  striped bordered hover>
       <thead>
         <tr>
           <th>Livro</th>
@@ -20,12 +22,13 @@ const Table = ({books}) => {
             <td>{book.author}</td>
             <td>{book.language}</td>
             <td>{book.year}</td>
+            <td><Button variant="secondary">Detalhes</Button>{' '}</td>
           </tr>
         })}
         
       </tbody>
-    </table>
+    </Table>
   )
 }
 
-export default Table;
+export default BooksTable;

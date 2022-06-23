@@ -1,9 +1,14 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form';
 
 const SearchBar = () => {
   return (
     <div>
-      <input type='text' placeholder='Busque livros pelo título, autor ou idioma'/>
+       <Form.Control
+        type="text"
+        id="inputTextSearch"
+        placeholder='Busque livros pelo título, autor ou idioma'
+      />
     </div>
   )
 }
